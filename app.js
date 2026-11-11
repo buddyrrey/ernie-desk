@@ -315,6 +315,15 @@ async function openCoin(mint) {
   }
 }
 
+function srcLabel(s) {
+  if (!s || s === "pumpfun") return "pump.fun";
+  if (s.indexOf("dex:") !== 0) return s;
+  const parts = s.slice(4).split("/");
+  const dex = {"raydium":"Raydium","raydium-clmm":"Raydium","meteora":"Meteora","meteora-damm-v2":"Meteora","pumpswap":"PumpSwap","orca":"Orca"}[parts[0]] || parts[0];
+  const pad = {"float":"Float","letsbonk":"Bonk","bags":"Bags","moonshot":"Moonshot"}[parts[1]];
+  return pad ? pad + " · " + dex : dex;
+}
+
 function renderCoin() {
   $("#screen-coin").classList.remove("hidden");
   const data = VIEW.coin;
@@ -327,6 +336,7 @@ function renderCoin() {
   $("#coinEmpty").classList.toggle("hidden", prices.length > 0);
   drawCandles(prices, data && data.position);
   const bits = [];
+  if (c.source) bits.push("from " + srcLabel(c.source));
   if (data && data.audit) bits.push("audit: " + (Number(data.audit.passed) ? "passed" : data.audit.reason));
   if (data && data.analysis) bits.push("score " + data.analysis.score);
   $("#coinMeta").innerHTML = bits.map(b => `<div class="stat">${esc(b)}</div>`).join("");
