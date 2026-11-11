@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0b0c10">
+  <title>desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <div class="brand">desk</div>
+      <div id="modePill" class="pill paper">PAPER</div>
+    </header>
+
+    <section id="authGate" class="gate hidden">
+      <h1>Locked</h1>
+      <p>Open this app from the private link (the one with #d=). It stays on this phone only. Change settings in Telegram.</p>
+      <input id="tokenInput" type="password" autocomplete="off" placeholder="path">
+      <button id="tokenBtn" type="button">Unlock</button>
+      <p id="authErr" class="err"></p>
+    </section>
+
+    <section id="errorState" class="gate hidden">
+      <h1>Can't reach the desk</h1>
+      <p id="errorDetail">Couldn't load the desk data. Check the link and try again.</p>
+      <button id="retryBtn" type="button">Retry</button>
+    </section>
+
+    <main id="main" class="hidden">
+      <nav class="tabs">
+        <button data-tab="home" class="on">Home</button>
+        <button data-tab="agents">Agents</button>
+        <button data-tab="account">Account</button>
+      </nav>
+
+      <section id="tab-home" class="tab">
+        <div class="balance-card">
+          <div class="label">balance</div>
+          <div id="balance" class="balance">$0.00</div>
+          <div id="ticketNote" class="note"></div>
+        </div>
+        <h2>Open positions</h2>
+        <div id="positions" class="list"></div>
+        <div id="positionsEmpty" class="empty hidden">No open positions. The desk is watching the curve.</div>
+        <h2>Activity</h2>
+        <div id="activity" class="list"></div>
+        <div id="activityEmpty" class="empty hidden">Quiet night so far. Nothing has crossed the desk.</div>
+      </section>
+
+      <section id="tab-agents" class="tab hidden">
+        <div id="agentCards" class="cards"></div>
+      </section>
+
+      <section id="tab-account" class="tab hidden">
+        <p class="lede">Read only here. Change settings, pause, or mode in Telegram (status, set stop, pause, paper / live).</p>
+        <div id="settings"></div>
+      </section>
+
+      <section id="screen-auditor" class="screen hidden">
+        <button class="back" data-back="agents">← Agents</button>
+        <h1>Auditor</h1>
+        <div class="disc" id="auditDisc">
+          <div class="beam" id="auditBeam"></div>
+          <div class="disc-label" id="auditDiscLabel">taking apart…</div>
+        </div>
+        <div id="auditLayers" class="layers"></div>
+        <div id="auditorEmpty" class="empty hidden">No coin is on the bench. When Scanner passes one, the eight layers light up here.</div>
+        <div id="auditorError" class="empty err hidden">Auditor couldn't finish this coin.</div>
+      </section>
+
+      <section id="screen-coin" class="screen hidden">
+        <button class="back" data-back="home">← Home</button>
+        <div id="coinHead"></div>
+        <div id="candles" class="candles"></div>
+        <div id="coinEmpty" class="empty hidden">No prices yet for this coin. Candles start once Scanner is polling it.</div>
+        <div id="coinMeta"></div>
+        <div id="coinRisk" class="risk-line-legend hidden">orange dashed = Risk trailing stop</div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

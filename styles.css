@@ -1,0 +1,134 @@
+:root {
+  --bg: #0b0c10;
+  --bg2: #12141c;
+  --card: #171a24;
+  --ink: #e8e4d9;
+  --muted: #8a8578;
+  --line: #2a2e3b;
+  --cyan: #3ee0c9;
+  --amber: #f0b429;
+  --red: #ff5a5f;
+  --green: #7dff9a;
+  --paper: #f0b429;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg); color: var(--ink);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 14px;
+  min-height: 100%;
+}
+#app { max-width: 430px; margin: 0 auto; padding: 12px 14px 48px; }
+.top { display: flex; align-items: center; justify-content: space-between; padding: 8px 0 16px; }
+.brand {
+  font-family: Syne, sans-serif;
+  font-weight: 800; letter-spacing: -0.04em;
+  font-size: 28px;
+}
+.pill {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  padding: 5px 9px; border-radius: 999px; border: 1px solid var(--line);
+}
+.pill.paper { color: var(--bg); background: var(--paper); border-color: var(--paper); }
+.pill.live { color: var(--bg); background: var(--red); border-color: var(--red); }
+.tabs { display: flex; gap: 6px; margin-bottom: 16px; }
+.tabs button, .back, button {
+  font-family: inherit; background: transparent; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; cursor: pointer;
+}
+.tabs button.on { color: var(--bg); background: var(--ink); border-color: var(--ink); }
+.back { margin-bottom: 12px; }
+h1, h2 { font-family: Syne, sans-serif; letter-spacing: -0.03em; margin: 18px 0 8px; }
+h1 { font-size: 22px; } h2 { font-size: 16px; color: var(--muted); font-weight: 600; }
+.balance-card {
+  background: radial-gradient(1200px 200px at 0% 0%, #1c2233, var(--card));
+  border: 1px solid var(--line); border-radius: 16px; padding: 18px 16px;
+}
+.label { color: var(--muted); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+.balance { font-family: Syne, sans-serif; font-size: 40px; font-weight: 800; letter-spacing: -0.04em; }
+.note { color: var(--amber); margin-top: 8px; font-size: 12px; }
+.list { display: flex; flex-direction: column; gap: 8px; }
+.row {
+  display: grid; grid-template-columns: 1fr auto; gap: 8px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  padding: 10px 12px; text-decoration: none; color: inherit;
+}
+.row .title { font-weight: 600; }
+.row .sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.row .right { text-align: right; color: var(--muted); font-size: 12px; }
+.row.kill .title { color: var(--muted); text-decoration: line-through; }
+.row.kill .right { color: var(--red); }
+.row.pass .right { color: var(--cyan); }
+.row.red .right, .row.stopped .right { color: var(--red); }
+.row.sold .right, .row.bought .right { color: var(--green); }
+.btn-fomo {
+  display: inline-block; margin-top: 8px; padding: 6px 10px;
+  border-radius: 999px; background: var(--cyan); color: #041411;
+  font-weight: 600; font-size: 11px; text-decoration: none; letter-spacing: 0.04em;
+}
+.empty {
+  border: 1px dashed var(--line); border-radius: 12px; padding: 18px 14px;
+  color: var(--muted); text-align: center; line-height: 1.45;
+}
+.empty.err { border-color: var(--red); color: var(--red); }
+.cards { display: flex; flex-direction: column; gap: 10px; }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px;
+}
+.card h3 { font-family: Syne, sans-serif; margin: 0 0 6px; font-size: 18px; }
+.card .stat { color: var(--muted); font-size: 12px; }
+.pills { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.mini { font-size: 11px; padding: 4px 8px; border-radius: 999px; border: 1px solid var(--line); }
+.mini.stop { color: var(--red); border-color: var(--red); }
+.mini.trail { color: var(--green); border-color: var(--green); }
+.lede { color: var(--muted); }
+.setting { margin: 0 0 16px; padding: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+.setting label { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.setting input[type=range] { width: 100%; }
+.setting input[type=number], .setting input[type=text], .setting select, .gate input {
+  width: 100%; margin-top: 6px; background: var(--bg); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 8px; padding: 8px; font-family: inherit;
+}
+.gate { padding: 40px 8px; text-align: center; }
+.gate h1 { margin-top: 0; }
+.gate button { margin-top: 12px; background: var(--ink); color: var(--bg); border: 0; padding: 10px 18px; }
+.err { color: var(--red); }
+.hidden { display: none !important; }
+.layers { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+.layer {
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px;
+  min-height: 64px;
+}
+.layer .n { color: var(--muted); font-size: 10px; letter-spacing: 0.1em; }
+.layer.ok { border-color: var(--green); }
+.layer.red { border-color: var(--red); }
+.layer.grey { opacity: 0.45; }
+.disc {
+  position: relative; width: 180px; height: 180px; margin: 16px auto;
+  border-radius: 50%; border: 2px solid var(--line);
+  background: conic-gradient(from 220deg, #111 0%, #1b2433 40%, #111 100%);
+  overflow: hidden;
+}
+.beam {
+  position: absolute; left: 50%; top: 50%; width: 2px; height: 50%;
+  background: linear-gradient(var(--cyan), transparent);
+  transform-origin: top center; transform: rotate(0deg);
+  animation: none;
+}
+.disc.spin .beam { animation: spin 1.2s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.disc-label {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: var(--muted); text-align: center; padding: 20px;
+}
+.candles { height: 180px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; position: relative; overflow: hidden; }
+.candles svg { width: 100%; height: 100%; display: block; }
+.risk-line-legend { color: #f59e0b; font-size: 11px; margin-top: 6px; }
+.score-ring { width: 72px; height: 72px; }
+.bar { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; margin-top: 8px; }
+.bar > span { display: block; height: 100%; background: var(--cyan); width: 0; }
+.bar.done > span { width: 100%; background: var(--green); }
+
+#settings.readonly input, #settings.readonly select { pointer-events: none; opacity: 0.7; }
+#settings.readonly input[type=range] { pointer-events: none; }
